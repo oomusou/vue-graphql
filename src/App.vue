@@ -11,16 +11,12 @@
 <script>
 import gql from 'graphql-tag';
 
-let books = {
-  query: gql`query ($category: BookCategory!) {
-    books: allBooks(category: $category) {
+let books = gql`
+  query {
+    books: allBooks(category: FP) {
       title
     }
-  }`,
-  variables: {
-    category: 'FP',
-  }
-};
+  }`;
 
 export default {
   name: 'app',
