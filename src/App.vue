@@ -1,28 +1,31 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <ul>
+      <li v-for="(item, index) in books" :key="index">
+        {{ item.title }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import gql from 'graphql-tag';
+
+let books = {
+  query: gql`query ($category: BookCategory!) {
+    books: allBooks(category: $category) {
+      title
+    }
+  }`,
+  variables: {
+    category: 'FP',
+  }
+};
 
 export default {
   name: 'app',
-  components: {
-    HelloWorld
+  apollo: {
+    books
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
