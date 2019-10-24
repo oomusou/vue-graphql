@@ -47,7 +47,6 @@ let typeDefs = gql`
   }
 `;
 
-
 let resolvers = {
   Query: {
     allBooks: (_, args) => data.filter(x => x.category === args.category)
