@@ -13,7 +13,7 @@ import gql from 'graphql-tag';
 
 let books = gql`
   query {
-    books: allBooks(category: FP) {
+    books(category: FP) {
       title
     }
   }`;

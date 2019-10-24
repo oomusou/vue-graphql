@@ -11,7 +11,7 @@ let typeDefs = gql`
     """
     根據書本種類查詢所有書籍
     """
-    allBooks(category: BookCategory!): [Book]
+    books(category: BookCategory!): [Book]
   }
   
   """
@@ -49,7 +49,7 @@ let typeDefs = gql`
 
 let resolvers = {
   Query: {
-    allBooks: (_, args) => data.filter(x => x.category === args.category)
+    books: (_, args) => data.filter(x => x.category === args.category)
   }
 };
 
